@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Kalkulator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <nav>
+        <div class="hamburger-menu">
+          <i class="ri-menu-line"></i>
+          <p>Standar</p>
+        </div>
+        <ul>
+          <li class="title-sidebar-1">kalkulator</li>
+          <li>
+            <p class="active-sidebar">
+              <i class="ri-calculator-line"></i> Standar
+            </p>
+          </li>
+          <li class="title-sidebar-2">Pengonversi</li>
+          <li>
+            <p><i class="ri-money-dollar-circle-line"></i> Mata Uang</p>
+          </li>
+        </ul>
+        <div class="overlay"></div>
+      </nav>
+      <div class="display">
+        <div class="display-1"></div>
+        <div class="display-2"></div>
+      </div>
+      <div class="keyboard">
+        <div class="button operator">%</div>
+        <div class="button clearEntity">CE</div>
+        <div class="button clearAll">C</div>
+        <div class="button operator">/</div>
+        <div class="button number">7</div>
+        <div class="button number">8</div>
+        <div class="button number">9</div>
+        <div class="button operator">x</div>
+        <div class="button number">4</div>
+        <div class="button number">5</div>
+        <div class="button number">6</div>
+        <div class="button operator">-</div>
+        <div class="button number">1</div>
+        <div class="button number">2</div>
+        <div class="button number">3</div>
+        <div class="button operator">+</div>
+        <div class="button number zero">0</div>
+        <div class="button number dot">.</div>
+        <div class="button equal">=</div>
+      </div>
+    </main>
+    <aside>
+      <div class="title-history">History</div>
+      <div class="history"></div>
+      <div class="clear-history"><span>clear</span></div>
+    </aside>
+    <script src="index.js"></script>
+  </body>
+</html>
