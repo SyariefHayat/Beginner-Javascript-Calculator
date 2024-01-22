@@ -11,6 +11,7 @@ const clearEntityEl = document.querySelector(".clearEntity");
 const clearAllEl = document.querySelector(".clearAll");
 const history = document.querySelector(".history");
 const clearHistory = document.querySelector(".clear-history");
+const clearButton = document.querySelector(".clear-btn-hst");
 const dHistory = document.querySelector(".div-history");
 const dValue = document.querySelector(".div-value");
 
@@ -135,6 +136,17 @@ function allHistory() {
   history.prepend(divHistory);
 
   clearHistory.style.display = "block";
+  clearButton.style.display = "block";
+
+  // KETIKA TOMBOL CLEAR DI KLIK
+  clearButton.addEventListener("click", (e) => {
+    while (history.firstChild) {
+      history.removeChild(history.firstChild);
+    }
+
+    clearHistory.style.display = "none";
+    clearButton.style.display = "none";
+  });
 };
 
 // KETIKA TOMBOL C DI KLIK 
@@ -152,14 +164,7 @@ clearEntityEl.addEventListener("click", (e) => {
   display2Num = "";
 });
 
-// KETIKA TOMBOL CLEAR DI KLIK
-clearHistory.addEventListener("click", (e) => {
-  while (history.firstChild) {
-    history.removeChild(history.firstChild);
-  }
 
-  clearHistory.style.display = "none";
-});
 
 // FITUR UNTUK BISA MASUKKAN INPUT DENGAN keyboard
 window.addEventListener("keydown", (e) => {

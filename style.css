@@ -255,8 +255,12 @@ aside {
   background-color: #261e1b;
 }
 
-.clear-history span {
-  display: block;
+.clear-history {
+  display: none;
+}
+
+.clear-history .clear-btn-hst {
+  display: none;
   width: 80px;
   height: 30px;
   margin: 10px 15px;
@@ -313,13 +317,29 @@ aside {
   }
 }
 
-@media screen and (max-width: 567px) {
+@media screen and (max-width: 1000px) {
   main {
     width: 100%;
   }
 
+  nav ul {
+    width: 30%;
+  }
+
   aside {
     display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav ul {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  nav ul {
+    width: 50%;
   }
 }
 
