@@ -1,5 +1,5 @@
 // SELEKSI DOM
-const hamMenu = document.querySelector(".hamburger-menu");
+const hamMenu = document.querySelector(".hamburger-menu i");
 const ul = document.querySelector("ul");
 const overlay = document.querySelector(".overlay");
 const display1 = document.querySelector(".display-1");
@@ -10,8 +10,7 @@ const equal = document.querySelector(".equal");
 const clearEntityEl = document.querySelector(".clearEntity");
 const clearAllEl = document.querySelector(".clearAll");
 const history = document.querySelector(".history");
-const clearHistory = document.querySelector(".clear-history");
-const clearButton = document.querySelector(".clear-btn-hst");
+const clearButton = document.querySelector("aside i");
 const dHistory = document.querySelector(".div-history");
 const dValue = document.querySelector(".div-value");
 
@@ -45,20 +44,27 @@ let result = null;
 let finalValue = null;
 let lastOperation = "";
 let haveDot = false;
+const maxDigits = 16;
+
 
 // KETIKA TOMBOL NUMBER DI TEKAN
 numbersEl.forEach((number) => {
   number.addEventListener("click", (e) => {
-    if (e.target.innerText === "." && !haveDot) {
+    if (display2Num.length >= maxDigits) {
+      // Jangan tambahkan angka jika jumlah digit sudah mencapai batas maksimal
+      return;
+    }
+
+    if (e.target.innerText === "," && !haveDot) {
       haveDot = true;
-    } else if (e.target.innerText === "." && haveDot) {
+    } else if (e.target.innerText === "," && haveDot) {
       return;
     } else if (!display1Num) {
       display1.innerText = "";
     }
 
     display2Num += e.target.innerText;
-    display2.innerText = display2Num;
+    display2.innerText = formatNumber(display2Num);
   });
 });
 
@@ -76,7 +82,6 @@ operatorsEl.forEach((operator) => {
 
     if (display1Num && display2Num && lastOperation) {
       mathOperation();
-      console.log(display2Num);
     } else {
       result = parseFloat(display2Num);
     }
@@ -110,18 +115,27 @@ function mathOperation() {
 };
 
 // KETIKA TOMBOL SAMADENGAN DI KLIK
-equal.addEventListener("click", (e) => {
+equal.addEventListener("click", () => {
   if (!display1Num || !display2Num) return;
 
   haveDot = false;
   mathOperation();
+
+  // Batasi jumlah digit pada hasil operasi
+  result = result.toString().substring(0, maxDigits);
+
   clearVar("=");
-  display2.innerText = result;
+  display2.innerText = formatNumber(result);
   finalValue = result;
   allHistory();
   display2Num = "";
   display1Num = "";
 });
+
+// FUNGSI UNTUK MENAMBAHKAN TITIK SETIAP SETELAH ANGKA TIGA DIGIT PERTAMA
+function formatNumber(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 // FUNGSI MEMBUAT ELEMENT BARU DI ELEMENT HISTORY 
 function allHistory() {
@@ -135,32 +149,43 @@ function allHistory() {
   history.prepend(divValue);
   history.prepend(divHistory);
 
-  clearHistory.style.display = "block";
   clearButton.style.display = "block";
 
   // KETIKA TOMBOL CLEAR DI KLIK
-  clearButton.addEventListener("click", (e) => {
+  clearButton.addEventListener("click", () => {
     while (history.firstChild) {
       history.removeChild(history.firstChild);
     }
 
-    clearHistory.style.display = "none";
     clearButton.style.display = "none";
   });
 };
 
 // KETIKA TOMBOL C DI KLIK 
-clearAllEl.addEventListener("click", (e) => {
+clearAllEl.addEventListener("click", () => {
+  clearAll();
+});
+
+function clearAll() {
   display1.innerText = "";
   display2.innerHTML = "0";
   display1Num = "";
   display2Num = "";
   result = "";
-});
+}
 
 // KETIKA TOMBOL CE DI KLIK
-clearEntityEl.addEventListener("click", (e) => {
-  display2.innerText = "";
+clearEntityEl.addEventListener("click", () => {
+  if (lastOperation) {
+    display2.innerText = "0";
+    display2Num = "";
+  }
+
+  if (!display1Num && !display2Num) {
+    clearAll();
+  }
+
+  display2.innerText = "0";
   display2Num = "";
 });
 
@@ -179,7 +204,7 @@ window.addEventListener("keydown", (e) => {
     e.key === "7" ||
     e.key === "8" ||
     e.key === "9" ||
-    e.key === "."
+    e.key === ","
   ) {
     clickButtonEl(e.key);
   } else if (e.key === "+" || e.key === "-" || e.key === "%" || e.key === "/") {
