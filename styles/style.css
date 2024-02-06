@@ -58,7 +58,7 @@ main {
 
 .hamburger-menu p {
   position: absolute;
-  top: 18px;
+  top: 17px;
   left: 52px;
   font-size: 1.2em;
   z-index: 1;
@@ -319,7 +319,7 @@ aside i:hover {
   }
 
   .display-1 {
-    top: 5px;
+    top: 50px;
   }
 }
 
@@ -329,7 +329,11 @@ aside i:hover {
   }
 
   .display {
-    height: 20%;
+    height: 22%;
+  }
+
+  .display-1 {
+    top: 10px;
   }
 
   .display-2 {
@@ -343,7 +347,7 @@ aside i:hover {
   }
 
   .display-2 {
-    font-size: 2.5em;
+    font-size: 2.2em;
   }
 }
 
