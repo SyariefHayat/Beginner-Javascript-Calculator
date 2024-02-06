@@ -329,11 +329,12 @@ aside i:hover {
   }
 
   .display {
-    height: 22%;
+    height: 25%;
   }
 
   .display-1 {
-    top: 10px;
+    top: 5px;
+    font-size: 1em;
   }
 
   .display-2 {
@@ -344,6 +345,11 @@ aside i:hover {
 @media screen and (max-width: 567px) {
   nav ul {
     width: 50%;
+  }
+
+  .display-1 {
+    top: 30px;
+    font-size: 1em;
   }
 
   .display-2 {
