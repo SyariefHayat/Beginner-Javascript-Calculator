@@ -53,7 +53,10 @@ numbersEl.forEach((number) => {
     if (display2Num.length >= maxDigits) {
       // Jangan tambahkan angka jika jumlah digit sudah mencapai batas maksimal
       return;
+    } else if (e.target.innerText === "," && !display2Num) {
+      return;
     }
+
 
     if (e.target.innerText === "," && !haveDot) {
       haveDot = true;
@@ -164,6 +167,7 @@ function allHistory() {
 // KETIKA TOMBOL C DI KLIK 
 clearAllEl.addEventListener("click", () => {
   clearAll();
+  haveDot = false;
 });
 
 function clearAll() {
@@ -187,6 +191,7 @@ clearEntityEl.addEventListener("click", () => {
 
   display2.innerText = "0";
   display2Num = "";
+  haveDot = false;
 });
 
 
